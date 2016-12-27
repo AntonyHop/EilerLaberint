@@ -22,23 +22,11 @@
 	var ctx = can.getContext('2d');
 	ctx.lineWidth = 2;
 	window.onload = function(){
-	var col = 10;
-	var row = 10;
+	var col = 100;
+	var row = 100;
 	var cell = 20; 
 	generate(row,col,cell);
-	inter = setInterval(function(){
-		if(segment.hor_seg.length>0){
-			var rand = Math.floor(Math.random() * (segment.hor_seg.length - 0)) + 0;
-			segment.dell_hor(segment.hor_seg[rand]);
-			segment.hor_seg.splice(rand,1);
-			var rand = Math.floor(Math.random() * (segment.ver_seg.length - 0)) + 0;
-			segment.dell_ver(segment.ver_seg[rand]);
-			segment.ver_seg.splice(rand,1);
-		}else {
-			console.log("all interval");
-			clearInterval(inter)
-		};
-	},200);
+	animate(row,col,cell,2);
 	
 	
 	   
@@ -93,8 +81,23 @@
 		for (s_count = 0;s_count<col;s_count++){
   			segment.add(false,(cell/2)*(s_count*2),cell*row,cell);
 		}	
-   kj[b kj[b kj[b ]]]
+   
 	}
-</script>
+	function animate(row,col,cell,speed){
+		inter = setInterval(function(){
+		if(segment.hor_seg.length>0){
+			var rand = Math.floor(Math.random() * (segment.hor_seg.length - 0)) + 0;
+			segment.dell_hor(segment.hor_seg[rand]);
+			segment.hor_seg.splice(rand,1);
+			var rand = Math.floor(Math.random() * (segment.ver_seg.length - 0)) + 0;
+			segment.dell_ver(segment.ver_seg[rand]);
+			segment.ver_seg.splice(rand,1);
+		}else {
+			console.log("all interval");
+			generate(row,col,cell);
+		};
+	},speed);
+	}
+C</script>
 </body>
 </html>
