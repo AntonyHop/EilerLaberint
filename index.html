@@ -20,29 +20,28 @@
 	can.height = window.innerHeight-20;
 	can.setAttribute("style","border: 1px solid #333");
 	var ctx = can.getContext('2d');
-	ctx.lineWidth = 5;
+	ctx.lineWidth = 2;
 	window.onload = function(){
 	var col = 10;
 	var row = 10;
-	var cell = 100; 
+	var cell = 20; 
 	generate(row,col,cell);
-	
 	inter = setInterval(function(){
 		if(segment.hor_seg.length>0){
 			var rand = Math.floor(Math.random() * (segment.hor_seg.length - 0)) + 0;
 			segment.dell_hor(segment.hor_seg[rand]);
+			segment.hor_seg.splice(rand,1);
 			var rand = Math.floor(Math.random() * (segment.ver_seg.length - 0)) + 0;
 			segment.dell_ver(segment.ver_seg[rand]);
-			console.log(del_x,del_y);
 			segment.ver_seg.splice(rand,1);
-			segment.hor_seg.splice(rand,1);
 		}else {
 			console.log("all interval");
 			clearInterval(inter)
 		};
-	},2);
+	},200);
 	
-	   segment.dell_ver(segment.ver_seg[7]);
+	
+	   
 	   
 	}
 
@@ -73,7 +72,7 @@
 	  hor_seg:new Array(),
 	  ver_seg :new Array(),
 	  dell_hor:function(elem){
-	  	ctx.clearRect((elem.x+ctx.lineWidth/2),(elem.y-ctx.lineWidth/2)-2,elem.size-ctx.lineWidth,ctx.lineWidth+3);
+	  	ctx.clearRect(elem.x+ctx.lineWidth/2,(elem.y-ctx.lineWidth/2)-2,elem.size-ctx.lineWidth,ctx.lineWidth+3);
 	  },
 	  dell_ver:function(elem){
 	  	ctx.fillStyle = "#33ffcc";
